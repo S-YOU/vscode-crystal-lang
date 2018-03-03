@@ -141,7 +141,7 @@
 		},
 		{
 			"comment": " just as above but being not a logical operation",
-			"match": "(?<!\\.)\\b(asm|alias|alias_method|break|next|pointerof|typeof|sizeof|instance_sizeof|return|super|yield|uninitialized)\\b(?![?!])",
+			"match": "(?<!\\.)\\b(asm|alias|alias_method|pointerof|typeof|sizeof|instance_sizeof|super|uninitialized|uninitialized_ptr)\\b(?![?!])",
 			"name": "keyword.control.pseudo-method.crystal"
 		},
 		{
@@ -230,6 +230,72 @@
 		{
 			"match": "\\b[A-Z\\x{80}-\\x{10FFFF}][\\w\\x{80}-\\x{10FFFF}]*\\b",
 			"name": "variable.other.constant.crystal"
+		},
+		{
+			"match": "\\b(?:printf|snprintf|sleep|mark|usleep|signal|free)\\b",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "\\b(?:rte_|print_|debug_|setup_|cleanup_|kni_|tap_|reset_|clone_|copy_|prepare_|alloc_|dequeue_|enqueue_|clear_|destroy_|resize_|append_|prepend_|convert_|mark_|read_|write_|drop_|pass_|mirror|pktmbuf_|pool_|recv_|send_|send|recv|wait_|free_|measure|update_|process_|set_|init_|apply_|to_|__rte_)\\w*\\b",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "\\b\\w+?(?:_loop)\\b",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "\\b\\w+(?=\\()",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "\\b\\w+\\s+(?=do\\b)",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "\\b(fail|panic)\\b",
+			"name": "variable.language.crystal"
+		},
+		{
+			"match": "[^.\\w](return|yield|break|next)\\b",
+			"name": "variable.language.crystal"
+		},
+		{
+			"match": "\\b(options|main)\\s+(?=do)\\b",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "(\\w+[?!])",
+			"name": "entity.name.type.class.crystal"
+		},
+		{
+			"match": "\\b(perf)\\s+(\\w+)\\s+(?=do)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.def.crystal"
+				},
+				"2": {
+					"name": "entity.name.type.class.crystal"
+				}
+			}
+		},
+		{
+			"match": "\\b((?:\\w+_)?thread|forever)\\s+(\\w+)\\s+(?=do)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.def.crystal"
+				},
+				"2": {
+					"name": "entity.name.function.crystal"
+				}
+			}
+		},
+		{
+			"match": "\\{\\{|\\}\\}|\\[|\\]",
+			"name": "entity.name.function.crystal"
+		},
+		{
+			"match": "\\.(?:value|pointer_at|offset_at)\\b",
+			"name": "variable.language.crystal"
 		},
 		{
 			"begin": "(?x)(?=def\\b)(?<=^|\\s)(def|fun)\\s+((?>[a-zA-Z_\\x{80}-\\x{10FFFF}][\\x{80}-\\x{10FFFF}\\w]*(?>\\.|::))?(?>[a-zA-Z_\\x{80}-\\x{10FFFF}][\\x{80}-\\x{10FFFF}\\w]*(?>[?!]|=(?!>))?|===?|>[>=]?|<=>|<[<=]?|[%&`\/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?) )\\s*(\\()",
